@@ -18,7 +18,7 @@ class ArticlesController extends Controller
                 ->onConnection('redis')
         );
 
-        $responseData = Redis::get("articles:source:$source:sortBy:$sortBy");
-        return json_decode($responseData);
+        $responseData = json_decode(Redis::get("articles:source:$source:sortBy:$sortBy"));
+        return $responseData? $responseData: [];
     }
 }
